@@ -4,7 +4,6 @@ import dev.sweetberry.wwizardry.WanderingWizardry;
 import dev.sweetberry.wwizardry.client.WanderingWizardryClient;
 import dev.sweetberry.wwizardry.client.content.events.ClientEvents;
 import dev.sweetberry.wwizardry.client.content.events.PackReloader;
-import dev.sweetberry.wwizardry.compat.terrablender.TerraBlenderInitializer;
 import dev.sweetberry.wwizardry.content.ContentInitializer;
 import dev.sweetberry.wwizardry.content.block.BlockInitializer;
 import dev.sweetberry.wwizardry.content.entity.EntityInitializer;
@@ -32,7 +31,6 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 public class NeoForgeInitializer {
 	public NeoForgeInitializer(IEventBus bus, Dist dist) {
 		bus.addListener(this::registerToRegistries);
-		bus.addListener(this::commonSetup);
 		bus.addListener(this::createEntityAttributes);
 		WanderingWizardry.modLoadedCheck = ModList.get()::isLoaded;
 		NeoForgeEvents.init();
@@ -42,10 +40,6 @@ public class NeoForgeInitializer {
 
 		if (dist == Dist.CLIENT)
 			NeoForgeClientEvents.init(bus);
-	}
-
-	private void commonSetup(final FMLCommonSetupEvent event) {
-		event.enqueueWork(TerraBlenderInitializer::init);
 	}
 
 	@SubscribeEvent

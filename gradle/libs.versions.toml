@@ -1,23 +1,23 @@
 [versions]
 minecraft = "1.21.1"
-fabric_loader = "0.16.0"
-neoforge = "21.1.127"
+fabric_loader = "0.18.5"
+neoforge = "21.1.222"
 
 mixin = "0.8.5"
-mixin_extras = "0.3.5"
+mixin_extras = "0.5.3"
 
-fabric_api = "0.104.0+1.21.1"
+fabric_api = "0.116.7+1.21.1"
 
-terrablender = "1.21-4.0.0.1"
+biolith = "3.0.10"
 
-emi = "1.1.12+1.21"
-modmenu = "11.0.1"
+emi = "1.1.22+1.21.1"
+modmenu = "11.0.4"
 
 trimmed_fabric = "1.21-3.0.0+fabric"
 trimmed_neoforge = "1.21-3.0.0+neoforge"
 
-sodium_fabric = "mc1.21.1-0.6.9-fabric"
-sodium_neoforge = "mc1.21.1-0.6.9-neoforge"
+sodium_fabric = "mc1.21.1-0.6.13-fabric"
+sodium_neoforge = "mc1.21.1-0.6.13-neoforge"
 
 [libraries]
 minecraft = { module = "com.mojang:minecraft", version.ref = "minecraft" }
@@ -26,9 +26,9 @@ mixin = { module = "org.spongepowered:mixin", version.ref = "mixin" }
 mixin_extras = { module = "io.github.llamalad7:mixinextras-common", version.ref = "mixin_extras" }
 
 # Common
-terrablender_common = { module = "com.github.glitchfiend:TerraBlender-common", version.ref = "terrablender" }
-terrablender_fabric = { module = "com.github.glitchfiend:TerraBlender-fabric", version.ref = "terrablender" }
-terrablender_neoforge = { module = "com.github.glitchfiend:TerraBlender-neoforge", version.ref = "terrablender" }
+biolith_common = { module = "com.terraformersmc:biolith-neoforge", version.ref = "biolith" }
+biolith_fabric = { module = "com.terraformersmc:biolith-fabric", version.ref = "biolith" }
+biolith_neoforge = { module = "com.terraformersmc:biolith-neoforge", version.ref = "biolith" }
 
 emi_common = { module = "dev.emi:emi-xplat-mojmap", version.ref = "emi" }
 emi_fabric = { module = "dev.emi:emi-fabric", version.ref = "emi" }
@@ -54,17 +54,17 @@ modmenu = { module = "com.terraformersmc:modmenu", version.ref = "modmenu" }
 [bundles]
 mixin = ["mixin", "mixin_extras"]
 
-include_common = ["terrablender_common"]
+include_common = ["biolith_common"]
 
-include_fabric = ["terrablender_fabric", "trimmed_fabric"]
+include_fabric = ["biolith_fabric", "trimmed_fabric"]
 
-include_neoforge = ["terrablender_neoforge", "trimmed_neoforge"]
+include_neoforge = ["biolith_neoforge", "trimmed_neoforge"]
 
 compat_fabric = ["emi_fabric", "modmenu", "sodium_fabric"]
 
 [plugins]
-idea_ext = { id = "org.jetbrains.gradle.plugin.idea-ext", version = "1.1.8" }
-loom = { id = "fabric-loom", version = "1.8-SNAPSHOT" }
+idea_ext = { id = "org.jetbrains.gradle.plugin.idea-ext", version = "1.4.1" }
+loom = { id = "fabric-loom", version = "1.15-SNAPSHOT" }
 vanilla_gradle = { id = "org.spongepowered.gradle.vanilla", version = "0.2.1-SNAPSHOT" }
-neogradle = { id = "net.neoforged.gradle.userdev", version = "7.0.107" }
-mod_dev_gradle = { id = "net.neoforged.moddev", version = "2.0.16-beta" }
+neogradle = { id = "net.neoforged.gradle.userdev", version = "7.1.21" }
+mod_dev_gradle = { id = "net.neoforged.moddev", version = "2.0.141" }

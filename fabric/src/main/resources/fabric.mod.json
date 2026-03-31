@@ -30,9 +30,6 @@
     "client": [
       "dev.sweetberry.wwizardry.fabric.client.FabricClientInitializer"
     ],
-    "terrablender": [
-      "dev.sweetberry.wwizardry.fabric.compat.terrablender.FabricTerraBlenderInitializer"
-    ],
     "emi": [
       "dev.sweetberry.wwizardry.compat.emi.EmiInitializer"
     ]

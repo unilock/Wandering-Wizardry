@@ -11,12 +11,12 @@ version = rootProject.version + "-common"
 
 repositories {
 	maven {
-		name = "TerraformersMC"
-		url = "https://maven.terraformersmc.com/"
+		name = "Fabric"
+		url = "https://maven.fabricmc.net/"
 	}
 	maven {
-		name = "Forge"
-		url = "https://maven.minecraftforge.net/"
+		name = "TerraformersMC"
+		url = "https://maven.terraformersmc.com/"
 	}
 	exclusiveContent {
 		forRepository {

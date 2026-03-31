@@ -4,7 +4,7 @@ plugins {
     id 'java-library'
 }
 
-archivesBaseName = project.archives_base_name
+base.archivesName = project.archives_base_name
 version = rootProject.version + "-neoforge"
 
 neoForge {
@@ -41,10 +41,6 @@ repositories {
 	maven {
 		name = "TerraformersMC"
 		url = "https://maven.terraformersmc.com/"
-	}
-	maven {
-		name = "Forge"
-		url = "https://maven.minecraftforge.net/"
 	}
 	exclusiveContent {
 		forRepository {

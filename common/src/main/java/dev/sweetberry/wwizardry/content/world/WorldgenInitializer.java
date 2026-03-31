@@ -1,15 +1,21 @@
 package dev.sweetberry.wwizardry.content.world;
 
+import com.terraformersmc.biolith.api.biome.BiomePlacement;
+import com.terraformersmc.biolith.api.surface.SurfaceGeneration;
 import dev.sweetberry.wwizardry.WanderingWizardry;
 import dev.sweetberry.wwizardry.api.Lazy;
 import dev.sweetberry.wwizardry.api.registry.RegistryContext;
+import dev.sweetberry.wwizardry.content.block.BlockInitializer;
 import dev.sweetberry.wwizardry.content.world.feature.CrystalShardFeature;
 import dev.sweetberry.wwizardry.content.world.processor.WaterLoggingFixProcessor;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.SurfaceRules;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
@@ -60,8 +66,44 @@ public class WorldgenInitializer {
 		addModification(OVERWORLD_MODIFICATIONS, step, feature);
 	}
 
+	public static SurfaceRules.RuleSource getMaterialRule() {
+		var aboveWater = SurfaceRules.waterBlockCheck(-1, 0);
+
+		return SurfaceRules.ifTrue(
+			SurfaceRules.isBiome(WorldgenInitializer.FUNGAL_FOREST),
+			SurfaceRules.ifTrue(
+				SurfaceRules.abovePreliminarySurface(),
+				SurfaceRules.sequence(
+					SurfaceRules.ifTrue(
+						aboveWater,
+						SurfaceRules.ifTrue(
+							SurfaceRules.ON_FLOOR,
+							SurfaceRules.state(BlockInitializer.MYCELIAL_SAND.get().defaultBlockState())
+						)
+					),
+					SurfaceRules.ifTrue(
+						SurfaceRules.ON_FLOOR,
+						SurfaceRules.state(Blocks.SAND.defaultBlockState())
+					),
+					SurfaceRules.ifTrue(
+						SurfaceRules.UNDER_FLOOR,
+						SurfaceRules.state(Blocks.SAND.defaultBlockState())
+					),
+					SurfaceRules.ifTrue(
+						SurfaceRules.DEEP_UNDER_FLOOR,
+						SurfaceRules.state(Blocks.SANDSTONE.defaultBlockState())
+					)
+				)
+			)
+		);
+	}
+
 	public static void init() {
 		addOverworldModification(GenerationStep.Decoration.UNDERGROUND_ORES, ROSE_QUARTZ);
+		BiomePlacement.replaceOverworld(Biomes.DESERT, WorldgenInitializer.FUNGAL_FOREST, 0.167);
+		BiomePlacement.replaceOverworld(Biomes.DRIPSTONE_CAVES, WorldgenInitializer.CRYSTAL_COVE, 0.167);
+		BiomePlacement.replaceOverworld(Biomes.PLAINS, WorldgenInitializer.FORGOTTEN_FIELDS, 0.167);
+		SurfaceGeneration.addOverworldSurfaceRules(WanderingWizardry.id("fungal_forest"), getMaterialRule());
 	}
 
 	@SuppressWarnings("unchecked")

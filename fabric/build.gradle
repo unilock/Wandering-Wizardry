@@ -2,7 +2,7 @@ plugins {
 	alias libs.plugins.loom
 }
 
-archivesBaseName = project.archives_base_name
+base.archivesName = project.archives_base_name
 version = rootProject.version + "-fabric"
 
 def test_compat = true
@@ -11,10 +11,6 @@ repositories {
 	maven {
 		name = 'TerraformersMC'
 		url = 'https://maven.terraformersmc.com/'
-	}
-	maven {
-		name = "Forge"
-		url = "https://maven.minecraftforge.net/"
 	}
 	maven {
 		name = 'Ladysnake Mods'
